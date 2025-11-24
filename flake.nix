@@ -14,8 +14,12 @@
       perSystem =
         { pkgs, ... }:
         let
-          ghc-version = "ghc982";
-          compiler = pkgs.haskell.packages."${ghc-version}";
+          ghc-version = "ghc9122";
+          compiler = pkgs.haskell.packages."${ghc-version}".override {
+            overrides = final: prev: {
+              Cabal-syntax_3_10_3_0 = hlib.doJailbreak prev.Cabal-syntax_3_10_3_0;
+            };
+          };
           hlib = pkgs.haskell.lib;
           mkPkg =
             returnShellEnv:
@@ -35,7 +39,7 @@
           apps = {
             format = nix-hs-utils.format compilerPkgs;
             lint = nix-hs-utils.lint compilerPkgs;
-            lintRefactor = nix-hs-utils.lintRefactor compilerPkgs;
+            lint-refactor = nix-hs-utils.lint-refactor compilerPkgs;
           };
         };
       systems = [
