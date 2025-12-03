@@ -11,6 +11,7 @@ module Numeric.Algebra.Multiplicative.MMonoid
   )
 where
 
+import Data.Coerce (coerce)
 import Data.Complex (Complex)
 import Data.Fixed (Fixed, HasResolution)
 import Data.Int (Int16, Int32, Int64, Int8)
@@ -18,6 +19,11 @@ import Data.Kind (Constraint, Type)
 import Data.Ratio (Ratio)
 import Data.Word (Word16, Word32, Word64, Word8)
 import GHC.Natural (Natural)
+import Numeric.Algebra.Deriving
+  ( FromFractional (MkFromFractional),
+    FromIntegral (MkFromIntegral),
+    FromNum (MkFromNum),
+  )
 import Numeric.Algebra.Multiplicative.MSemigroup (MSemigroup)
 
 -- | Defines a monoid over a multiplicative semigroup.
@@ -49,91 +55,66 @@ pattern NonOne y <- (\x -> (x == one, x) -> (False, y))
 #endif
 
 -- | @since 0.1
-instance MMonoid Double where
-  one = 1
+deriving via (FromNum a) instance (Num a) => MMonoid (FromFractional a)
+
+-- | @since 0.1
+deriving via (FromNum a) instance (Num a) => MMonoid (FromIntegral a)
+
+-- | @since 0.1
+instance (Num a) => MMonoid (FromNum a) where
+  one = coerce @a 1
   {-# INLINE one #-}
 
 -- | @since 0.1
-instance MMonoid Float where
-  one = 1
-  {-# INLINE one #-}
+deriving via (FromNum Double) instance MMonoid Double
 
 -- | @since 0.1
-instance MMonoid Int where
-  one = 1
-  {-# INLINE one #-}
+deriving via (FromNum Float) instance MMonoid Float
 
 -- | @since 0.1
-instance MMonoid Int8 where
-  one = 1
-  {-# INLINE one #-}
+deriving via (FromNum Int) instance MMonoid Int
 
 -- | @since 0.1
-instance MMonoid Int16 where
-  one = 1
-  {-# INLINE one #-}
+deriving via (FromNum Int8) instance MMonoid Int8
 
 -- | @since 0.1
-instance MMonoid Int32 where
-  one = 1
-  {-# INLINE one #-}
+deriving via (FromNum Int16) instance MMonoid Int16
 
 -- | @since 0.1
-instance MMonoid Int64 where
-  one = 1
-  {-# INLINE one #-}
+deriving via (FromNum Int32) instance MMonoid Int32
 
 -- | @since 0.1
-instance MMonoid Integer where
-  one = 1
-  {-# INLINE one #-}
+deriving via (FromNum Int64) instance MMonoid Int64
 
 -- | @since 0.1
-instance MMonoid Word where
-  one = 1
-  {-# INLINE one #-}
+deriving via (FromNum Integer) instance MMonoid Integer
 
 -- | @since 0.1
-instance MMonoid Word8 where
-  one = 1
-  {-# INLINE one #-}
+deriving via (FromNum Word) instance MMonoid Word
 
 -- | @since 0.1
-instance MMonoid Word16 where
-  one = 1
-  {-# INLINE one #-}
+deriving via (FromNum Word8) instance MMonoid Word8
 
 -- | @since 0.1
-instance MMonoid Word32 where
-  one = 1
-  {-# INLINE one #-}
+deriving via (FromNum Word16) instance MMonoid Word16
 
 -- | @since 0.1
-instance MMonoid Word64 where
-  one = 1
-  {-# INLINE one #-}
+deriving via (FromNum Word32) instance MMonoid Word32
 
 -- | @since 0.1
-instance MMonoid Natural where
-  one = 1
-  {-# INLINE one #-}
+deriving via (FromNum Word64) instance MMonoid Word64
 
 -- | @since 0.1
-instance MMonoid (Ratio Integer) where
-  one = 1
-  {-# INLINE one #-}
+deriving via (FromNum Natural) instance MMonoid Natural
 
 -- | @since 0.1
-instance MMonoid (Ratio Natural) where
-  one = 1
-  {-# INLINE one #-}
+deriving via (FromNum (Ratio Integer)) instance MMonoid (Ratio Integer)
 
 -- | @since 0.1
-instance (RealFloat a) => MMonoid (Complex a) where
-  one = 1
-  {-# INLINE one #-}
+deriving via (FromNum (Ratio Natural)) instance MMonoid (Ratio Natural)
 
 -- | @since 0.1
-instance (HasResolution k) => MMonoid (Fixed k) where
-  one = 1
-  {-# INLINE one #-}
+deriving via (FromNum (Complex a)) instance (RealFloat a) => MMonoid (Complex a)
+
+-- | @since 0.1
+deriving via (FromNum (Fixed k)) instance (HasResolution k) => MMonoid (Fixed k)

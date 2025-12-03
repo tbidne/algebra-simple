@@ -17,6 +17,7 @@ module Numeric.Algebra.Multiplicative.MEuclidean
   )
 where
 
+import Data.Coerce (coerce)
 import Data.Int (Int16, Int32, Int64, Int8)
 import Data.Kind (Constraint, Type)
 import Data.Word (Word16, Word32, Word64, Word8)
@@ -26,6 +27,7 @@ import Numeric.Algebra.Additive.AMonoid
     pattern NonZero,
     pattern Zero,
   )
+import Numeric.Algebra.Deriving (FromIntegral (MkFromIntegral))
 import Numeric.Algebra.Multiplicative.MGroup (MGroup)
 import Numeric.Algebra.Multiplicative.MSemigroup ((.*.))
 import Numeric.Algebra.Normed (Normed (norm))
@@ -64,61 +66,46 @@ mlcm x y = norm (x `mdiv` mgcd x y .*. y)
 {-# INLINE mlcm #-}
 
 -- | @since 0.1
-instance MEuclidean Int where
-  mdivMod = divMod
+instance (Integral a) => MEuclidean (FromIntegral a) where
+  mdivMod =
+    coerce
+      @(a -> a -> (a, a))
+      @(FromIntegral a -> FromIntegral a -> (FromIntegral a, FromIntegral a))
+      divMod
   {-# INLINE mdivMod #-}
 
 -- | @since 0.1
-instance MEuclidean Int8 where
-  mdivMod = divMod
-  {-# INLINE mdivMod #-}
+deriving via (FromIntegral Int) instance MEuclidean Int
 
 -- | @since 0.1
-instance MEuclidean Int16 where
-  mdivMod = divMod
-  {-# INLINE mdivMod #-}
+deriving via (FromIntegral Int8) instance MEuclidean Int8
 
 -- | @since 0.1
-instance MEuclidean Int32 where
-  mdivMod = divMod
-  {-# INLINE mdivMod #-}
+deriving via (FromIntegral Int16) instance MEuclidean Int16
 
 -- | @since 0.1
-instance MEuclidean Int64 where
-  mdivMod = divMod
-  {-# INLINE mdivMod #-}
+deriving via (FromIntegral Int32) instance MEuclidean Int32
 
 -- | @since 0.1
-instance MEuclidean Integer where
-  mdivMod = divMod
-  {-# INLINE mdivMod #-}
+deriving via (FromIntegral Int64) instance MEuclidean Int64
 
 -- | @since 0.1
-instance MEuclidean Word where
-  mdivMod = divMod
-  {-# INLINE mdivMod #-}
+deriving via (FromIntegral Integer) instance MEuclidean Integer
 
 -- | @since 0.1
-instance MEuclidean Word8 where
-  mdivMod = divMod
-  {-# INLINE mdivMod #-}
+deriving via (FromIntegral Word) instance MEuclidean Word
 
 -- | @since 0.1
-instance MEuclidean Word16 where
-  mdivMod = divMod
-  {-# INLINE mdivMod #-}
+deriving via (FromIntegral Word8) instance MEuclidean Word8
 
 -- | @since 0.1
-instance MEuclidean Word32 where
-  mdivMod = divMod
-  {-# INLINE mdivMod #-}
+deriving via (FromIntegral Word16) instance MEuclidean Word16
 
 -- | @since 0.1
-instance MEuclidean Word64 where
-  mdivMod = divMod
-  {-# INLINE mdivMod #-}
+deriving via (FromIntegral Word32) instance MEuclidean Word32
 
 -- | @since 0.1
-instance MEuclidean Natural where
-  mdivMod = divMod
-  {-# INLINE mdivMod #-}
+deriving via (FromIntegral Word64) instance MEuclidean Word64
+
+-- | @since 0.1
+deriving via (FromIntegral Natural) instance MEuclidean Natural

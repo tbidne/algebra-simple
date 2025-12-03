@@ -11,6 +11,7 @@ module Numeric.Algebra.Additive.AMonoid
   )
 where
 
+import Data.Coerce (coerce)
 import Data.Complex (Complex)
 import Data.Fixed (Fixed, HasResolution)
 import Data.Int (Int16, Int32, Int64, Int8)
@@ -19,6 +20,11 @@ import Data.Ratio (Ratio)
 import Data.Word (Word16, Word32, Word64, Word8)
 import GHC.Natural (Natural)
 import Numeric.Algebra.Additive.ASemigroup (ASemigroup)
+import Numeric.Algebra.Deriving
+  ( FromFractional (MkFromFractional),
+    FromIntegral (MkFromIntegral),
+    FromNum (MkFromNum),
+  )
 
 -- | Defines a monoid over an additive semigroup.
 --
@@ -59,94 +65,69 @@ pattern NonZero y <- (\x -> (x == zero, x) -> (False, y))
 #endif
 
 -- | @since 0.1
-instance AMonoid Double where
-  zero = 0
+deriving via (FromNum a) instance (Num a) => AMonoid (FromFractional a)
+
+-- | @since 0.1
+deriving via (FromNum a) instance (Num a) => AMonoid (FromIntegral a)
+
+-- | @since 0.1
+instance (Num a) => AMonoid (FromNum a) where
+  zero = coerce @a 0
   {-# INLINE zero #-}
 
 -- | @since 0.1
-instance AMonoid Float where
-  zero = 0
-  {-# INLINE zero #-}
+deriving via (FromNum Double) instance AMonoid Double
 
 -- | @since 0.1
-instance AMonoid Int where
-  zero = 0
-  {-# INLINE zero #-}
+deriving via (FromNum Float) instance AMonoid Float
 
 -- | @since 0.1
-instance AMonoid Int8 where
-  zero = 0
-  {-# INLINE zero #-}
+deriving via (FromNum Int) instance AMonoid Int
 
 -- | @since 0.1
-instance AMonoid Int16 where
-  zero = 0
-  {-# INLINE zero #-}
+deriving via (FromNum Int8) instance AMonoid Int8
 
 -- | @since 0.1
-instance AMonoid Int32 where
-  zero = 0
-  {-# INLINE zero #-}
+deriving via (FromNum Int16) instance AMonoid Int16
 
 -- | @since 0.1
-instance AMonoid Int64 where
-  zero = 0
-  {-# INLINE zero #-}
+deriving via (FromNum Int32) instance AMonoid Int32
 
 -- | @since 0.1
-instance AMonoid Integer where
-  zero = 0
-  {-# INLINE zero #-}
+deriving via (FromNum Int64) instance AMonoid Int64
 
 -- | @since 0.1
-instance AMonoid Word where
-  zero = 0
-  {-# INLINE zero #-}
+deriving via (FromNum Integer) instance AMonoid Integer
 
 -- | @since 0.1
-instance AMonoid Word8 where
-  zero = 0
-  {-# INLINE zero #-}
+deriving via (FromNum Word) instance AMonoid Word
 
 -- | @since 0.1
-instance AMonoid Word16 where
-  zero = 0
-  {-# INLINE zero #-}
+deriving via (FromNum Word8) instance AMonoid Word8
 
 -- | @since 0.1
-instance AMonoid Word32 where
-  zero = 0
-  {-# INLINE zero #-}
+deriving via (FromNum Word16) instance AMonoid Word16
 
 -- | @since 0.1
-instance AMonoid Word64 where
-  zero = 0
-  {-# INLINE zero #-}
+deriving via (FromNum Word32) instance AMonoid Word32
 
 -- | @since 0.1
-instance AMonoid Natural where
-  zero = 0
-  {-# INLINE zero #-}
+deriving via (FromNum Word64) instance AMonoid Word64
 
 -- | @since 0.1
-instance AMonoid (Ratio Integer) where
-  zero = 0
-  {-# INLINE zero #-}
+deriving via (FromNum Natural) instance AMonoid Natural
 
 -- | @since 0.1
-instance AMonoid (Ratio Natural) where
-  zero = 0
-  {-# INLINE zero #-}
+deriving via (FromNum (Ratio Integer)) instance AMonoid (Ratio Integer)
 
 -- | @since 0.1
-instance (RealFloat a) => AMonoid (Complex a) where
-  zero = 0
-  {-# INLINE zero #-}
+deriving via (FromNum (Ratio Natural)) instance AMonoid (Ratio Natural)
 
 -- | @since 0.1
-instance (HasResolution k) => AMonoid (Fixed k) where
-  zero = 0
-  {-# INLINE zero #-}
+deriving via (FromNum (Complex a)) instance (RealFloat a) => AMonoid (Complex a)
+
+-- | @since 0.1
+deriving via (FromNum (Fixed k)) instance (HasResolution k) => AMonoid (Fixed k)
 
 -- | @since 0.1
 instance (AMonoid a) => AMonoid (a, a) where

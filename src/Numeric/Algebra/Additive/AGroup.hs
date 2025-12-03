@@ -7,6 +7,7 @@ module Numeric.Algebra.Additive.AGroup
   )
 where
 
+import Data.Coerce (coerce)
 import Data.Complex (Complex)
 import Data.Fixed (Fixed, HasResolution)
 import Data.Int (Int16, Int32, Int64, Int8)
@@ -14,6 +15,11 @@ import Data.Kind (Constraint, Type)
 import Data.Ratio (Ratio)
 import Data.Word (Word16, Word32, Word64, Word8)
 import Numeric.Algebra.Additive.AMonoid (AMonoid (zero))
+import Numeric.Algebra.Deriving
+  ( FromFractional (MkFromFractional),
+    FromIntegral (MkFromIntegral),
+    FromNum (MkFromNum),
+  )
 
 -- | Defines an additive group.
 --
@@ -31,84 +37,63 @@ anegate n = zero .-. n
 {-# INLINE anegate #-}
 
 -- | @since 0.1
-instance AGroup Double where
-  (.-.) = (-)
+deriving via (FromNum a) instance (Num a) => AGroup (FromFractional a)
+
+-- | @since 0.1
+deriving via (FromNum a) instance (Num a) => AGroup (FromIntegral a)
+
+-- | @since 0.1
+instance (Num a) => AGroup (FromNum a) where
+  (.-.) = coerce @(a -> a -> a) @(FromNum a -> FromNum a -> FromNum a) (-)
   {-# INLINE (.-.) #-}
 
 -- | @since 0.1
-instance AGroup Float where
-  (.-.) = (-)
-  {-# INLINE (.-.) #-}
+deriving via (FromNum Double) instance AGroup Double
 
 -- | @since 0.1
-instance AGroup Int where
-  (.-.) = (-)
-  {-# INLINE (.-.) #-}
+deriving via (FromNum Float) instance AGroup Float
 
 -- | @since 0.1
-instance AGroup Int8 where
-  (.-.) = (-)
-  {-# INLINE (.-.) #-}
+deriving via (FromNum Int) instance AGroup Int
 
 -- | @since 0.1
-instance AGroup Int16 where
-  (.-.) = (-)
-  {-# INLINE (.-.) #-}
+deriving via (FromNum Int8) instance AGroup Int8
 
 -- | @since 0.1
-instance AGroup Int32 where
-  (.-.) = (-)
-  {-# INLINE (.-.) #-}
+deriving via (FromNum Int16) instance AGroup Int16
 
 -- | @since 0.1
-instance AGroup Int64 where
-  (.-.) = (-)
-  {-# INLINE (.-.) #-}
+deriving via (FromNum Int32) instance AGroup Int32
 
 -- | @since 0.1
-instance AGroup Integer where
-  (.-.) = (-)
-  {-# INLINE (.-.) #-}
+deriving via (FromNum Int64) instance AGroup Int64
 
 -- | @since 0.1
-instance AGroup Word where
-  (.-.) = (-)
-  {-# INLINE (.-.) #-}
+deriving via (FromNum Integer) instance AGroup Integer
 
 -- | @since 0.1
-instance AGroup Word8 where
-  (.-.) = (-)
-  {-# INLINE (.-.) #-}
+deriving via (FromNum Word) instance AGroup Word
 
 -- | @since 0.1
-instance AGroup Word16 where
-  (.-.) = (-)
-  {-# INLINE (.-.) #-}
+deriving via (FromNum Word8) instance AGroup Word8
 
 -- | @since 0.1
-instance AGroup Word32 where
-  (.-.) = (-)
-  {-# INLINE (.-.) #-}
+deriving via (FromNum Word16) instance AGroup Word16
 
 -- | @since 0.1
-instance AGroup Word64 where
-  (.-.) = (-)
-  {-# INLINE (.-.) #-}
+deriving via (FromNum Word32) instance AGroup Word32
 
 -- | @since 0.1
-instance AGroup (Ratio Integer) where
-  (.-.) = (-)
-  {-# INLINE (.-.) #-}
+deriving via (FromNum Word64) instance AGroup Word64
 
 -- | @since 0.1
-instance (RealFloat a) => AGroup (Complex a) where
-  (.-.) = (-)
-  {-# INLINE (.-.) #-}
+deriving via (FromNum (Ratio Integer)) instance AGroup (Ratio Integer)
 
 -- | @since 0.1
-instance (HasResolution k) => AGroup (Fixed k) where
-  (.-.) = (-)
-  {-# INLINE (.-.) #-}
+deriving via (FromNum (Complex a)) instance (RealFloat a) => AGroup (Complex a)
+
+-- | @since 0.1
+deriving via (FromNum (Fixed k)) instance (HasResolution k) => AGroup (Fixed k)
 
 -- | @since 0.1
 instance (AGroup a) => AGroup (a, a) where
