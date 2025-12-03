@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- | Provides the 'Internal.FromReal' and 'Internal.ToReal' typeclasses.</span><span>
+</span><span id="line-2"></span><span class="hs-comment">--</span><span>
+</span><span id="line-3"></span><span class="hs-comment">-- @since 0.1</span><span>
+</span><span id="line-4"></span><span class="hs-keyword">module</span><span> </span><span class="annot"><a href="Numeric.Convert.Real.html"><span class="hs-identifier">Numeric.Convert.Real</span></a></span><span>
+</span><span id="line-5"></span><span>  </span><span class="hs-special">(</span><span> </span><span class="annot"><a href="Numeric.Convert.Internal.html#FromReal"><span class="hs-identifier">Internal.FromReal</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><span id="line-6"></span><span>    </span><span class="annot"><a href="Numeric.Convert.Internal.html#ToReal"><span class="hs-identifier">Internal.ToReal</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span>
+</span><span id="line-7"></span><span>
+</span><span id="line-8"></span><span>    </span><span class="annot"><span class="hs-comment">-- * Aliases</span></span><span>
+</span><span id="line-9"></span><span>    </span><span class="annot"><a href="Numeric.Convert.Real.html#%211D"><span class="hs-identifier">&#8477;</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-10"></span><span>    </span><span class="annot"><a href="Numeric.Convert.Real.html#From%211D"><span class="hs-identifier">From&#8477;</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-11"></span><span>    </span><span class="annot"><a href="Numeric.Convert.Real.html#from%211D"><span class="hs-identifier">from&#8477;</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-12"></span><span>    </span><span class="annot"><a href="Numeric.Convert.Real.html#To%211D"><span class="hs-identifier">To&#8477;</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-13"></span><span>    </span><span class="annot"><a href="Numeric.Convert.Real.html#to%211D"><span class="hs-identifier">to&#8477;</span></a></span><span class="hs-special">,</span><span>
+</span><span id="line-14"></span><span>  </span><span class="hs-special">)</span><span>
+</span><span id="line-15"></span><span class="hs-keyword">where</span><span>
+</span><span id="line-16"></span><span>
+</span><span id="line-17"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">GHC.Stack</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">HasCallStack</span></span><span class="hs-special">)</span><span>
+</span><span id="line-18"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Numeric.Convert.Internal.html"><span class="hs-identifier">Numeric.Convert.Internal</span></a></span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">Internal</span></span><span>
+</span><span id="line-19"></span><span>
+</span><span id="line-20"></span><span class="hs-comment">-- | Unicode alias for 'Double', with U+211D.</span><span>
+</span><span id="line-21"></span><span class="hs-comment">--</span><span>
+</span><span id="line-22"></span><span class="hs-comment">-- @since 0.1</span><span>
+</span><span id="line-23"></span><span class="hs-keyword">type</span><span> </span><span id="%211D"><span class="annot"><a href="Numeric.Convert.Real.html#%211D"><span class="hs-identifier hs-var">&#8477;</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Double</span></span><span>
+</span><span id="line-24"></span><span>
+</span><span id="line-25"></span><span class="hs-comment">-- | Unicode alias for 'Internal.FromReal', with U+211D.</span><span>
+</span><span id="line-26"></span><span class="hs-comment">--</span><span>
+</span><span id="line-27"></span><span class="hs-comment">-- @since 0.1</span><span>
+</span><span id="line-28"></span><span class="hs-keyword">type</span><span> </span><span id="From%211D"><span class="annot"><a href="Numeric.Convert.Real.html#From%211D"><span class="hs-identifier hs-var">From&#8477;</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Numeric.Convert.Internal.html#FromReal"><span class="hs-identifier hs-type">Internal.FromReal</span></a></span><span>
+</span><span id="line-29"></span><span>
+</span><span id="line-30"></span><span class="hs-comment">-- | Unicode alias for 'Internal.fromR', with U+211D.</span><span>
+</span><span id="line-31"></span><span class="hs-comment">--</span><span>
+</span><span id="line-32"></span><span class="hs-comment">-- @since 0.1</span><span>
+</span><span id="line-33"></span><span id="local-6989586621679065538"><span class="annot"><a href="Numeric.Convert.Real.html#from%211D"><span class="hs-identifier hs-type">from&#8477;</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Numeric.Convert.Real.html#From%211D"><span class="hs-identifier hs-type">From&#8477;</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679065538"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier hs-type">HasCallStack</span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="Numeric.Convert.Real.html#%211D"><span class="hs-identifier hs-type">&#8477;</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679065538"><span class="hs-identifier hs-type">a</span></a></span></span><span>
+</span><span id="line-34"></span><span id="from%211D"><span class="annot"><span class="annottext">from&#8477; :: forall a. (From&#8477; a, HasCallStack) =&gt; &#8477; -&gt; a
+</span><a href="Numeric.Convert.Real.html#from%211D"><span class="hs-identifier hs-var hs-var">from&#8477;</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">&#8477; -&gt; a
+forall a. (From&#8477; a, HasCallStack) =&gt; &#8477; -&gt; a
+</span><a href="Numeric.Convert.Internal.html#fromR"><span class="hs-identifier hs-var">Internal.fromR</span></a></span><span>
+</span><span id="line-35"></span><span>
+</span><span id="line-36"></span><span class="hs-comment">-- | Unicode alias for 'Internal.ToReal', with U+211D.</span><span>
+</span><span id="line-37"></span><span class="hs-comment">--</span><span>
+</span><span id="line-38"></span><span class="hs-comment">-- @since 0.1</span><span>
+</span><span id="line-39"></span><span class="hs-keyword">type</span><span> </span><span id="To%211D"><span class="annot"><a href="Numeric.Convert.Real.html#To%211D"><span class="hs-identifier hs-var">To&#8477;</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="Numeric.Convert.Internal.html#ToReal"><span class="hs-identifier hs-type">Internal.ToReal</span></a></span><span>
+</span><span id="line-40"></span><span>
+</span><span id="line-41"></span><span class="hs-comment">-- | Unicode alias for 'Internal.toR', with U+211D.</span><span>
+</span><span id="line-42"></span><span class="hs-comment">--</span><span>
+</span><span id="line-43"></span><span class="hs-comment">-- @since 0.1</span><span>
+</span><span id="line-44"></span><span id="local-6989586621679065543"><span class="annot"><a href="Numeric.Convert.Real.html#to%211D"><span class="hs-identifier hs-type">to&#8477;</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier hs-type">HasCallStack</span></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="Numeric.Convert.Real.html#To%211D"><span class="hs-identifier hs-type">To&#8477;</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679065543"><span class="hs-identifier hs-type">a</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679065543"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Numeric.Convert.Real.html#%211D"><span class="hs-identifier hs-type">&#8477;</span></a></span></span><span>
+</span><span id="line-45"></span><span id="to%211D"><span class="annot"><span class="annottext">to&#8477; :: forall a. (HasCallStack, To&#8477; a) =&gt; a -&gt; &#8477;
+</span><a href="Numeric.Convert.Real.html#to%211D"><span class="hs-identifier hs-var hs-var">to&#8477;</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">a -&gt; &#8477;
+forall a. (ToReal a, HasCallStack) =&gt; a -&gt; &#8477;
+</span><a href="Numeric.Convert.Internal.html#toR"><span class="hs-identifier hs-var">Internal.toR</span></a></span><span>
+</span><span id="line-46"></span></pre></body></html>

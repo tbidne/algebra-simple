@@ -1,0 +1,71 @@
+[2025-12-04 09:29:14][Command][haddock_push] Starting...
+[2025-12-04 09:29:14][Command][haddock_push] Your branch is up to date with 'origin/main'.
+[2025-12-04 09:29:14][Command][haddock_push] Already on 'main'
+[2025-12-04 09:29:14][Command][haddock_push] Deleted branch gh-pages (was 8642faf).
+[2025-12-04 09:29:14][Command][haddock_push] Switched to a new branch 'gh-pages'
+[2025-12-04 09:29:16][Command][haddock_push] Resolving dependencies...
+[2025-12-04 09:29:17][Command][haddock_push] Build profile: -w ghc-9.12.2 -O1
+[2025-12-04 09:29:17][Command][haddock_push] In order, the following will be built (use -v for more details):
+[2025-12-04 09:29:17][Command][haddock_push]  - algebra-simple-0.1 (lib) (configuration changed)
+[2025-12-04 09:29:17][Command][haddock_push] Configuring library for algebra-simple-0.1...
+[2025-12-04 09:29:18][Command][haddock_push] Preprocessing library for algebra-simple-0.1...
+[2025-12-04 09:29:18][Command][haddock_push] Running Haddock on library for algebra-simple-0.1...
+[2025-12-04 09:29:19][Command][haddock_push] [ 1 of 28] Compiling Numeric.Algebra.Deriving ( src/Numeric/Algebra/Deriving.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:19][Command][haddock_push] [ 2 of 28] Compiling Numeric.Algebra.Additive.ASemigroup ( src/Numeric/Algebra/Additive/ASemigroup.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:19][Command][haddock_push] [ 3 of 28] Compiling Numeric.Algebra.Additive.AMonoid ( src/Numeric/Algebra/Additive/AMonoid.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:19][Command][haddock_push] [ 4 of 28] Compiling Numeric.Algebra.Additive.AGroup ( src/Numeric/Algebra/Additive/AGroup.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:19][Command][haddock_push] [ 5 of 28] Compiling Numeric.Algebra.Additive ( src/Numeric/Algebra/Additive.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:19][Command][haddock_push] [ 6 of 28] Compiling Numeric.Algebra.MetricSpace ( src/Numeric/Algebra/MetricSpace.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:19][Command][haddock_push] [ 7 of 28] Compiling Numeric.Algebra.Multiplicative.MSemigroup ( src/Numeric/Algebra/Multiplicative/MSemigroup.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:19][Command][haddock_push] [ 8 of 28] Compiling Numeric.Algebra.Multiplicative.MMonoid ( src/Numeric/Algebra/Multiplicative/MMonoid.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:19][Command][haddock_push] [ 9 of 28] Compiling Numeric.Algebra.Multiplicative.MGroup ( src/Numeric/Algebra/Multiplicative/MGroup.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:19][Command][haddock_push] [10 of 28] Compiling Numeric.Algebra.Normed ( src/Numeric/Algebra/Normed.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:19][Command][haddock_push] [11 of 28] Compiling Numeric.Algebra.Multiplicative.MEuclidean ( src/Numeric/Algebra/Multiplicative/MEuclidean.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:19][Command][haddock_push] [12 of 28] Compiling Numeric.Algebra.Multiplicative ( src/Numeric/Algebra/Multiplicative.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:19][Command][haddock_push] [13 of 28] Compiling Numeric.Algebra.Semiring ( src/Numeric/Algebra/Semiring.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:19][Command][haddock_push] [14 of 28] Compiling Numeric.Algebra.Semifield ( src/Numeric/Algebra/Semifield.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:19][Command][haddock_push] [15 of 28] Compiling Numeric.Algebra.Ring ( src/Numeric/Algebra/Ring.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:19][Command][haddock_push] [16 of 28] Compiling Numeric.Algebra.Field ( src/Numeric/Algebra/Field.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:19][Command][haddock_push] [17 of 28] Compiling Numeric.Algebra.Space.MSemiSpace ( src/Numeric/Algebra/Space/MSemiSpace.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:19][Command][haddock_push] [18 of 28] Compiling Numeric.Algebra.Space.MSpace ( src/Numeric/Algebra/Space/MSpace.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:19][Command][haddock_push] [19 of 28] Compiling Numeric.Algebra.Space.Semimodule ( src/Numeric/Algebra/Space/Semimodule.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:20][Command][haddock_push] [20 of 28] Compiling Numeric.Algebra.Space.Module ( src/Numeric/Algebra/Space/Module.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:20][Command][haddock_push] [21 of 28] Compiling Numeric.Algebra.Space.SemivectorSpace ( src/Numeric/Algebra/Space/SemivectorSpace.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:20][Command][haddock_push] [22 of 28] Compiling Numeric.Algebra.Space.VectorSpace ( src/Numeric/Algebra/Space/VectorSpace.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:20][Command][haddock_push] [23 of 28] Compiling Numeric.Algebra.Space ( src/Numeric/Algebra/Space.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:20][Command][haddock_push] [24 of 28] Compiling Numeric.Algebra  ( src/Numeric/Algebra.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:20][Command][haddock_push] [25 of 28] Compiling Numeric.Convert.Internal ( src/Numeric/Convert/Internal.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:20][Command][haddock_push] [26 of 28] Compiling Numeric.Convert.Integer ( src/Numeric/Convert/Integer.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:20][Command][haddock_push] [27 of 28] Compiling Numeric.Convert.Rational ( src/Numeric/Convert/Rational.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:20][Command][haddock_push] [28 of 28] Compiling Numeric.Convert.Real ( src/Numeric/Convert/Real.hs, nothing ) [Flags changed]
+[2025-12-04 09:29:26][Command][haddock_push] Haddock coverage:
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  4 /  4) in 'Numeric.Algebra.Deriving'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  2 /  2) in 'Numeric.Algebra.Additive.ASemigroup'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  4 /  4) in 'Numeric.Algebra.Additive.AMonoid'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  3 /  3) in 'Numeric.Algebra.Additive.AGroup'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  4 /  4) in 'Numeric.Algebra.Additive'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  3 /  3) in 'Numeric.Algebra.MetricSpace'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  2 /  2) in 'Numeric.Algebra.Multiplicative.MSemigroup'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  4 /  4) in 'Numeric.Algebra.Multiplicative.MMonoid'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  3 /  3) in 'Numeric.Algebra.Multiplicative.MGroup'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  2 /  2) in 'Numeric.Algebra.Normed'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  6 /  6) in 'Numeric.Algebra.Multiplicative.MEuclidean'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  5 /  5) in 'Numeric.Algebra.Multiplicative'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  2 /  2) in 'Numeric.Algebra.Semiring'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  2 /  2) in 'Numeric.Algebra.Semifield'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  2 /  2) in 'Numeric.Algebra.Ring'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  2 /  2) in 'Numeric.Algebra.Field'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  3 /  3) in 'Numeric.Algebra.Space.MSemiSpace'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  3 /  3) in 'Numeric.Algebra.Space.MSpace'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  2 /  2) in 'Numeric.Algebra.Space.Semimodule'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  2 /  2) in 'Numeric.Algebra.Space.Module'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  2 /  2) in 'Numeric.Algebra.Space.SemivectorSpace'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  2 /  2) in 'Numeric.Algebra.Space.VectorSpace'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  7 /  7) in 'Numeric.Algebra.Space'
+[2025-12-04 09:29:26][Command][haddock_push]  100% ( 15 / 15) in 'Numeric.Algebra'
+[2025-12-04 09:29:26][Command][haddock_push]  100% ( 10 / 10) in 'Numeric.Convert.Internal'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  9 /  9) in 'Numeric.Convert.Integer'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  9 /  9) in 'Numeric.Convert.Rational'
+[2025-12-04 09:29:26][Command][haddock_push]  100% (  9 /  9) in 'Numeric.Convert.Real'
+[2025-12-04 09:29:26][Command][haddock_push] Documentation created:
+[2025-12-04 09:29:26][Command][haddock_push] /home/tommy/Dev/tommy/github/algebra-simple/./dist-newstyle/build/x86_64-linux/ghc-9.12.2/algebra-simple-0.1/doc/html/algebra-simple
