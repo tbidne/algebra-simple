@@ -12,6 +12,7 @@ import Test.Algebra.Multiplicative.MGroup qualified
 import Test.Algebra.Multiplicative.MMonoid qualified
 import Test.Algebra.Multiplicative.MSemigroup qualified
 import Test.Algebra.Normed qualified
+import Test.Convert qualified
 import Test.Tasty qualified as Tasty
 
 -- | Runs property tests.
@@ -30,5 +31,6 @@ main =
         Test.Algebra.Multiplicative.MMonoid.props,
         Test.Algebra.Multiplicative.MGroup.props,
         Test.Algebra.Multiplicative.MEuclidean.props,
-        Test.Algebra.Normed.props
+        Test.Algebra.Normed.props,
+        Test.Convert.props
       ]

@@ -14,6 +14,7 @@ module Utils
     (<=>),
 
     -- * Misc
+    testProp,
     testPropertyCompat,
   )
 where
@@ -118,6 +119,10 @@ False <=> False = True
 _ <=> _ = False
 
 infixr 1 <=>
+
+testProp :: TestName -> PropertyName -> H.PropertyT IO () -> TestTree
+testProp testName propName p =
+  testPropertyCompat testName propName $ H.property p
 
 testPropertyCompat :: TestName -> PropertyName -> Property -> TestTree
 #if MIN_VERSION_tasty_hedgehog(1, 2, 0)

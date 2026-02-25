@@ -24,6 +24,10 @@ module Gens
     rational,
     rationalNat,
 
+    -- ** Other
+    complex,
+    fixed,
+
     -- * NonZero
 
     -- ** Specializations
@@ -50,6 +54,8 @@ module Gens
   )
 where
 
+import Data.Complex (Complex ((:+)))
+import Data.Fixed (E12, Fixed (MkFixed))
 import Data.Functor.Identity (Identity)
 import Data.Int (Int16, Int32, Int64, Int8)
 import Data.Word (Word16, Word32, Word64, Word8)
@@ -118,6 +124,12 @@ ratioNumDenom genNum genDenom = do
   n <- genNum
   d <- HG.filter (/= 0) genDenom
   pure (n :% d)
+
+complex :: (MonadGen m) => m (Complex Double)
+complex = (:+) <$> double <*> double
+
+fixed :: (MonadGen m) => m (Fixed E12)
+fixed = MkFixed <$> integer
 
 floatNZ :: (MonadGen m) => m Float
 floatNZ = nzFloatingBounds HG.float minVal maxVal

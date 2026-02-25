@@ -5,6 +5,7 @@ module Numeric.Algebra.Deriving
   ( AsNum (..),
     AsFractional (..),
     AsIntegral (..),
+    AsReal (..),
   )
 where
 
@@ -22,3 +23,8 @@ newtype AsIntegral a = MkAsIntegral a
 --
 -- @since 0.1
 newtype AsNum a = MkAsNum a
+
+-- | Derives classes from 'Real' constraint.
+--
+-- @since 0.1
+newtype AsReal a = MkAsReal a
