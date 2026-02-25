@@ -21,9 +21,9 @@ import Data.Word (Word16, Word32, Word64, Word8)
 import GHC.Natural (Natural)
 import Numeric.Algebra.Additive.ASemigroup (ASemigroup)
 import Numeric.Algebra.Deriving
-  ( FromFractional (MkFromFractional),
-    FromIntegral (MkFromIntegral),
-    FromNum (MkFromNum),
+  ( AsFractional (MkAsFractional),
+    AsIntegral (MkAsIntegral),
+    AsNum (MkAsNum),
   )
 
 -- | Defines a monoid over an additive semigroup.
@@ -65,69 +65,69 @@ pattern NonZero y <- (\x -> (x == zero, x) -> (False, y))
 #endif
 
 -- | @since 0.1
-deriving via (FromNum a) instance (Num a) => AMonoid (FromFractional a)
+deriving via (AsNum a) instance (Num a) => AMonoid (AsFractional a)
 
 -- | @since 0.1
-deriving via (FromNum a) instance (Num a) => AMonoid (FromIntegral a)
+deriving via (AsNum a) instance (Num a) => AMonoid (AsIntegral a)
 
 -- | @since 0.1
-instance (Num a) => AMonoid (FromNum a) where
+instance (Num a) => AMonoid (AsNum a) where
   zero = coerce @a 0
   {-# INLINE zero #-}
 
 -- | @since 0.1
-deriving via (FromNum Double) instance AMonoid Double
+deriving via (AsNum Double) instance AMonoid Double
 
 -- | @since 0.1
-deriving via (FromNum Float) instance AMonoid Float
+deriving via (AsNum Float) instance AMonoid Float
 
 -- | @since 0.1
-deriving via (FromNum Int) instance AMonoid Int
+deriving via (AsNum Int) instance AMonoid Int
 
 -- | @since 0.1
-deriving via (FromNum Int8) instance AMonoid Int8
+deriving via (AsNum Int8) instance AMonoid Int8
 
 -- | @since 0.1
-deriving via (FromNum Int16) instance AMonoid Int16
+deriving via (AsNum Int16) instance AMonoid Int16
 
 -- | @since 0.1
-deriving via (FromNum Int32) instance AMonoid Int32
+deriving via (AsNum Int32) instance AMonoid Int32
 
 -- | @since 0.1
-deriving via (FromNum Int64) instance AMonoid Int64
+deriving via (AsNum Int64) instance AMonoid Int64
 
 -- | @since 0.1
-deriving via (FromNum Integer) instance AMonoid Integer
+deriving via (AsNum Integer) instance AMonoid Integer
 
 -- | @since 0.1
-deriving via (FromNum Word) instance AMonoid Word
+deriving via (AsNum Word) instance AMonoid Word
 
 -- | @since 0.1
-deriving via (FromNum Word8) instance AMonoid Word8
+deriving via (AsNum Word8) instance AMonoid Word8
 
 -- | @since 0.1
-deriving via (FromNum Word16) instance AMonoid Word16
+deriving via (AsNum Word16) instance AMonoid Word16
 
 -- | @since 0.1
-deriving via (FromNum Word32) instance AMonoid Word32
+deriving via (AsNum Word32) instance AMonoid Word32
 
 -- | @since 0.1
-deriving via (FromNum Word64) instance AMonoid Word64
+deriving via (AsNum Word64) instance AMonoid Word64
 
 -- | @since 0.1
-deriving via (FromNum Natural) instance AMonoid Natural
+deriving via (AsNum Natural) instance AMonoid Natural
 
 -- | @since 0.1
-deriving via (FromNum (Ratio Integer)) instance AMonoid (Ratio Integer)
+deriving via (AsNum (Ratio Integer)) instance AMonoid (Ratio Integer)
 
 -- | @since 0.1
-deriving via (FromNum (Ratio Natural)) instance AMonoid (Ratio Natural)
+deriving via (AsNum (Ratio Natural)) instance AMonoid (Ratio Natural)
 
 -- | @since 0.1
-deriving via (FromNum (Complex a)) instance (RealFloat a) => AMonoid (Complex a)
+deriving via (AsNum (Complex a)) instance (RealFloat a) => AMonoid (Complex a)
 
 -- | @since 0.1
-deriving via (FromNum (Fixed k)) instance (HasResolution k) => AMonoid (Fixed k)
+deriving via (AsNum (Fixed k)) instance (HasResolution k) => AMonoid (Fixed k)
 
 -- | @since 0.1
 instance (AMonoid a) => AMonoid (a, a) where

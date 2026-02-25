@@ -27,7 +27,7 @@ import Numeric.Algebra.Additive.AMonoid
     pattern NonZero,
     pattern Zero,
   )
-import Numeric.Algebra.Deriving (FromIntegral (MkFromIntegral))
+import Numeric.Algebra.Deriving (AsIntegral (MkAsIntegral))
 import Numeric.Algebra.Multiplicative.MGroup (MGroup)
 import Numeric.Algebra.Multiplicative.MSemigroup ((.*.))
 import Numeric.Algebra.Normed (Normed (norm))
@@ -66,46 +66,46 @@ mlcm x y = norm (x `mdiv` mgcd x y .*. y)
 {-# INLINE mlcm #-}
 
 -- | @since 0.1
-instance (Integral a) => MEuclidean (FromIntegral a) where
+instance (Integral a) => MEuclidean (AsIntegral a) where
   mdivMod =
     coerce
       @(a -> a -> (a, a))
-      @(FromIntegral a -> FromIntegral a -> (FromIntegral a, FromIntegral a))
+      @(AsIntegral a -> AsIntegral a -> (AsIntegral a, AsIntegral a))
       divMod
   {-# INLINE mdivMod #-}
 
 -- | @since 0.1
-deriving via (FromIntegral Int) instance MEuclidean Int
+deriving via (AsIntegral Int) instance MEuclidean Int
 
 -- | @since 0.1
-deriving via (FromIntegral Int8) instance MEuclidean Int8
+deriving via (AsIntegral Int8) instance MEuclidean Int8
 
 -- | @since 0.1
-deriving via (FromIntegral Int16) instance MEuclidean Int16
+deriving via (AsIntegral Int16) instance MEuclidean Int16
 
 -- | @since 0.1
-deriving via (FromIntegral Int32) instance MEuclidean Int32
+deriving via (AsIntegral Int32) instance MEuclidean Int32
 
 -- | @since 0.1
-deriving via (FromIntegral Int64) instance MEuclidean Int64
+deriving via (AsIntegral Int64) instance MEuclidean Int64
 
 -- | @since 0.1
-deriving via (FromIntegral Integer) instance MEuclidean Integer
+deriving via (AsIntegral Integer) instance MEuclidean Integer
 
 -- | @since 0.1
-deriving via (FromIntegral Word) instance MEuclidean Word
+deriving via (AsIntegral Word) instance MEuclidean Word
 
 -- | @since 0.1
-deriving via (FromIntegral Word8) instance MEuclidean Word8
+deriving via (AsIntegral Word8) instance MEuclidean Word8
 
 -- | @since 0.1
-deriving via (FromIntegral Word16) instance MEuclidean Word16
+deriving via (AsIntegral Word16) instance MEuclidean Word16
 
 -- | @since 0.1
-deriving via (FromIntegral Word32) instance MEuclidean Word32
+deriving via (AsIntegral Word32) instance MEuclidean Word32
 
 -- | @since 0.1
-deriving via (FromIntegral Word64) instance MEuclidean Word64
+deriving via (AsIntegral Word64) instance MEuclidean Word64
 
 -- | @since 0.1
-deriving via (FromIntegral Natural) instance MEuclidean Natural
+deriving via (AsIntegral Natural) instance MEuclidean Natural

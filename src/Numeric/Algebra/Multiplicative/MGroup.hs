@@ -16,8 +16,8 @@ import Data.Word (Word16, Word32, Word64, Word8)
 import GHC.Natural (Natural)
 import GHC.Real (Ratio)
 import Numeric.Algebra.Deriving
-  ( FromFractional (MkFromFractional),
-    FromIntegral (MkFromIntegral),
+  ( AsFractional (MkAsFractional),
+    AsIntegral (MkAsIntegral),
   )
 import Numeric.Algebra.Multiplicative.MMonoid (MMonoid (one))
 
@@ -37,65 +37,65 @@ mnegate n = one .%. n
 {-# INLINE mnegate #-}
 
 -- | @since 0.1
-instance (Fractional a) => MGroup (FromFractional a) where
-  (.%.) = coerce @(a -> a -> a) @(FromFractional a -> FromFractional a -> FromFractional a) (/)
+instance (Fractional a) => MGroup (AsFractional a) where
+  (.%.) = coerce @(a -> a -> a) @(AsFractional a -> AsFractional a -> AsFractional a) (/)
   {-# INLINE (.%.) #-}
 
 -- | @since 0.1
-instance (Integral a) => MGroup (FromIntegral a) where
-  (.%.) = coerce @(a -> a -> a) @(FromIntegral a -> FromIntegral a -> FromIntegral a) div
+instance (Integral a) => MGroup (AsIntegral a) where
+  (.%.) = coerce @(a -> a -> a) @(AsIntegral a -> AsIntegral a -> AsIntegral a) div
   {-# INLINE (.%.) #-}
 
 -- | @since 0.1
-deriving via (FromFractional Double) instance MGroup Double
+deriving via (AsFractional Double) instance MGroup Double
 
 -- | @since 0.1
-deriving via (FromFractional Float) instance MGroup Float
+deriving via (AsFractional Float) instance MGroup Float
 
 -- | @since 0.1
-deriving via (FromIntegral Int) instance MGroup Int
+deriving via (AsIntegral Int) instance MGroup Int
 
 -- | @since 0.1
-deriving via (FromIntegral Int8) instance MGroup Int8
+deriving via (AsIntegral Int8) instance MGroup Int8
 
 -- | @since 0.1
-deriving via (FromIntegral Int16) instance MGroup Int16
+deriving via (AsIntegral Int16) instance MGroup Int16
 
 -- | @since 0.1
-deriving via (FromIntegral Int32) instance MGroup Int32
+deriving via (AsIntegral Int32) instance MGroup Int32
 
 -- | @since 0.1
-deriving via (FromIntegral Int64) instance MGroup Int64
+deriving via (AsIntegral Int64) instance MGroup Int64
 
 -- | @since 0.1
-deriving via (FromIntegral Integer) instance MGroup Integer
+deriving via (AsIntegral Integer) instance MGroup Integer
 
 -- | @since 0.1
-deriving via (FromIntegral Word) instance MGroup Word
+deriving via (AsIntegral Word) instance MGroup Word
 
 -- | @since 0.1
-deriving via (FromIntegral Word8) instance MGroup Word8
+deriving via (AsIntegral Word8) instance MGroup Word8
 
 -- | @since 0.1
-deriving via (FromIntegral Word16) instance MGroup Word16
+deriving via (AsIntegral Word16) instance MGroup Word16
 
 -- | @since 0.1
-deriving via (FromIntegral Word32) instance MGroup Word32
+deriving via (AsIntegral Word32) instance MGroup Word32
 
 -- | @since 0.1
-deriving via (FromIntegral Word64) instance MGroup Word64
+deriving via (AsIntegral Word64) instance MGroup Word64
 
 -- | @since 0.1
-deriving via (FromIntegral Natural) instance MGroup Natural
+deriving via (AsIntegral Natural) instance MGroup Natural
 
 -- | @since 0.1
-deriving via (FromFractional (Ratio Integer)) instance MGroup (Ratio Integer)
+deriving via (AsFractional (Ratio Integer)) instance MGroup (Ratio Integer)
 
 -- | @since 0.1
-deriving via (FromFractional (Ratio Natural)) instance MGroup (Ratio Natural)
+deriving via (AsFractional (Ratio Natural)) instance MGroup (Ratio Natural)
 
 -- | @since 0.1
-deriving via (FromFractional (Complex a)) instance (RealFloat a) => MGroup (Complex a)
+deriving via (AsFractional (Complex a)) instance (RealFloat a) => MGroup (Complex a)
 
 -- | @since 0.1
-deriving via (FromFractional (Fixed k)) instance (HasResolution k) => MGroup (Fixed k)
+deriving via (AsFractional (Fixed k)) instance (HasResolution k) => MGroup (Fixed k)

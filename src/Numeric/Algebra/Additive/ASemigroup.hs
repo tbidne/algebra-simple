@@ -15,9 +15,9 @@ import Data.Ratio (Ratio)
 import Data.Word (Word16, Word32, Word64, Word8)
 import GHC.Natural (Natural)
 import Numeric.Algebra.Deriving
-  ( FromFractional (MkFromFractional),
-    FromIntegral (MkFromIntegral),
-    FromNum (MkFromNum),
+  ( AsFractional (MkAsFractional),
+    AsIntegral (MkAsIntegral),
+    AsNum (MkAsNum),
   )
 
 -- | Defines an additive semigroup.
@@ -31,69 +31,69 @@ class ASemigroup s where
 infixl 6 .+.
 
 -- | @since 0.1
-deriving via (FromNum a) instance (Num a) => ASemigroup (FromFractional a)
+deriving via (AsNum a) instance (Num a) => ASemigroup (AsFractional a)
 
 -- | @since 0.1
-deriving via (FromNum a) instance (Num a) => ASemigroup (FromIntegral a)
+deriving via (AsNum a) instance (Num a) => ASemigroup (AsIntegral a)
 
 -- | @since 0.1
-instance (Num a) => ASemigroup (FromNum a) where
-  (.+.) = coerce @(a -> a -> a) @(FromNum a -> FromNum a -> FromNum a) (+)
+instance (Num a) => ASemigroup (AsNum a) where
+  (.+.) = coerce @(a -> a -> a) @(AsNum a -> AsNum a -> AsNum a) (+)
   {-# INLINE (.+.) #-}
 
 -- | @since 0.1
-deriving via (FromNum Double) instance ASemigroup Double
+deriving via (AsNum Double) instance ASemigroup Double
 
 -- | @since 0.1
-deriving via (FromNum Float) instance ASemigroup Float
+deriving via (AsNum Float) instance ASemigroup Float
 
 -- | @since 0.1
-deriving via (FromNum Int) instance ASemigroup Int
+deriving via (AsNum Int) instance ASemigroup Int
 
 -- | @since 0.1
-deriving via (FromNum Int8) instance ASemigroup Int8
+deriving via (AsNum Int8) instance ASemigroup Int8
 
 -- | @since 0.1
-deriving via (FromNum Int16) instance ASemigroup Int16
+deriving via (AsNum Int16) instance ASemigroup Int16
 
 -- | @since 0.1
-deriving via (FromNum Int32) instance ASemigroup Int32
+deriving via (AsNum Int32) instance ASemigroup Int32
 
 -- | @since 0.1
-deriving via (FromNum Int64) instance ASemigroup Int64
+deriving via (AsNum Int64) instance ASemigroup Int64
 
 -- | @since 0.1
-deriving via (FromNum Integer) instance ASemigroup Integer
+deriving via (AsNum Integer) instance ASemigroup Integer
 
 -- | @since 0.1
-deriving via (FromNum Word) instance ASemigroup Word
+deriving via (AsNum Word) instance ASemigroup Word
 
 -- | @since 0.1
-deriving via (FromNum Word8) instance ASemigroup Word8
+deriving via (AsNum Word8) instance ASemigroup Word8
 
 -- | @since 0.1
-deriving via (FromNum Word16) instance ASemigroup Word16
+deriving via (AsNum Word16) instance ASemigroup Word16
 
 -- | @since 0.1
-deriving via (FromNum Word32) instance ASemigroup Word32
+deriving via (AsNum Word32) instance ASemigroup Word32
 
 -- | @since 0.1
-deriving via (FromNum Word64) instance ASemigroup Word64
+deriving via (AsNum Word64) instance ASemigroup Word64
 
 -- | @since 0.1
-deriving via (FromNum Natural) instance ASemigroup Natural
+deriving via (AsNum Natural) instance ASemigroup Natural
 
 -- | @since 0.1
-deriving via (FromNum (Ratio Integer)) instance ASemigroup (Ratio Integer)
+deriving via (AsNum (Ratio Integer)) instance ASemigroup (Ratio Integer)
 
 -- | @since 0.1
-deriving via (FromNum (Ratio Natural)) instance ASemigroup (Ratio Natural)
+deriving via (AsNum (Ratio Natural)) instance ASemigroup (Ratio Natural)
 
 -- | @since 0.1
-deriving via (FromNum (Complex a)) instance (RealFloat a) => ASemigroup (Complex a)
+deriving via (AsNum (Complex a)) instance (RealFloat a) => ASemigroup (Complex a)
 
 -- | @since 0.1
-deriving via (FromNum (Fixed k)) instance (HasResolution k) => ASemigroup (Fixed k)
+deriving via (AsNum (Fixed k)) instance (HasResolution k) => ASemigroup (Fixed k)
 
 -- | @since 0.1
 instance (ASemigroup a) => ASemigroup (a, a) where
