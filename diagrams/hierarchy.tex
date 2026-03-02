@@ -15,6 +15,7 @@ line/.style={-latex}
 % - Generated image is too large to display nicely in haddock, so for now
 %   we manually edit the html after it's generated to cap the size.
 %   Width = 954, height = 405 seems to work nicely.
+%   width="954" height="405"
 
 \begin{document}
 
@@ -23,59 +24,107 @@ line/.style={-latex}
 
 \begin{tikzpicture}
   % additive
-  \node[plain] (asemigroup) at (8,0) {\bftt{ASemigroup} \\ Addition: \texttt{(.+.)}};
-  \node[plain] (amonoid)    at (8,2) {\bftt{AMonoid} \\ Identity: \texttt{zero}};
-  \node[plain] (agroup)     at (8,4) {\bftt{AGroup} \\ Subtraction: \texttt{(.-.)}};
+  \node[plain] (asemigroup) at (16,0) {\bftt{ASemigroup} \\ Addition: \texttt{(.+.)}};
+  \node[plain] (amonoid)    at (16,4) {\bftt{AMonoid} \\ Identity: \texttt{zero}};
+  \node[plain] (agroup)     at (16,8) {\bftt{AGroup} \\ Subtraction: \texttt{(.-.)}};
   \draw[thick, ->] (asemigroup) -- (amonoid);
   \draw[thick, ->] (amonoid)    -- (agroup);
 
   % multiplicative
-  \node[plain] (msemigroup)      at (16,0) {\bftt{MSemigroup} \\ Multiplication: \texttt{(.*.)}};
-  \node[plain] (mmonoid)         at (16,2) {\bftt{MMonoid} \\ Identity: \texttt{one}};
-  \node[plain] (mgroup)          at (16,4) {\bftt{MGroup} \\ Division: \texttt{(.\%.)}};
-  \node[plain] (meuclidean)  at (18,6) {\bftt{MEuclidean} \\ Integral division: \texttt{mmod}};
+  \node[plain] (msemigroup)      at (32,0) {\bftt{MSemigroup} \\ Multiplication: \texttt{(.*.)}};
+  \node[plain] (mmonoid)         at (32,4) {\bftt{MMonoid} \\ Identity: \texttt{one}};
+  \node[plain] (mgroup)          at (32,8) {\bftt{MGroup} \\ Division: \texttt{(.\%.)}};
+  \node[plain] (meuclidean)  at (36,12) {\bftt{MEuclidean} \\ Integral division: \texttt{mmod}};
   \draw[thick, ->] (msemigroup) -- (mmonoid);
   \draw[thick, ->] (mmonoid)    -- (mgroup);
   \draw[thick, ->] (mgroup)    -- (meuclidean);
 
+  % quartaring
+  \node[plain] (quartaring) at (24,2) {\bftt{Quartaring}};
+  \draw[thick, ->] (asemigroup) -- (quartaring);
+  \draw[thick, ->] (msemigroup) -- (quartaring);
+
+  % hemiring
+  \node[plain] (hemiring) at (20,6) {\bftt{Hemiring}};
+  \draw[thick, ->] (quartaring) -- (hemiring);
+  \draw[thick, ->] (amonoid) -- (hemiring);
+
+  % demiring
+  \node[plain] (demiring) at (28,6) {\bftt{Demiring}};
+  \draw[thick, ->] (quartaring) -- (demiring);
+  \draw[thick, ->] (mmonoid) -- (demiring);
+
   % semiring
-  \node[plain] (semiring) at (12,4) {\bftt{Semiring}};
-  \draw[thick, ->] (amonoid) -- (semiring);
-  \draw[thick, ->] (mmonoid) -- (semiring);
+  \node[plain] (semiring) at (24,8) {\bftt{Semiring}};
+  \draw[thick, ->] (hemiring) -- (semiring);
+  \draw[thick, ->] (demiring) -- (semiring);
+
+  % pseudoring and pseudosemifield
+  \node[plain] (pseudoring) at (18,10) {\bftt{PseudoRing}};
+  \draw[thick, ->] (agroup) -- (pseudoring);
+  \draw[thick, ->] (hemiring) -- (pseudoring);
+
+  \node[plain] (pseudosemifield) at (30,10) {\bftt{PseudoSemifield}};
+  \draw[thick, ->] (mgroup) -- (pseudosemifield);
+  \draw[thick, ->] (demiring) -- (pseudosemifield);
 
   % ring and semifield
-  \node[plain] (ring)      at (10,6) {\bftt{Ring}};
-  \node[plain] (semifield) at (14,6) {\bftt{Semifield}};
-  \draw[thick, ->] (agroup)   -- (ring);
+  \node[plain] (ring)      at (20,12) {\bftt{Ring}};
+  \node[plain] (semifield) at (28,12) {\bftt{Semifield}};
   \draw[thick, ->] (semiring) -- (ring);
-  \draw[thick, ->] (mgroup)   -- (semifield);
+  \draw[thick, ->] (pseudoring) -- (ring);
   \draw[thick, ->] (semiring) -- (semifield);
+  \draw[thick, ->] (pseudosemifield) -- (semifield);
 
   % field
-  \node[plain] (field)  at (12,8) {\bftt{Field}};
+  \node[plain] (field)  at (24,16) {\bftt{Field}};
   \draw[thick, ->] (ring)      -- (field);
   \draw[thick, ->] (semifield) -- (field);
 
   % msemispace and mspace
-  \node[plain] (msemispace) at (0,2) {\bftt{MSemiSpace} \\ Scalar multiplication: \texttt{(.*)}};
-  \node[plain] (mspace)     at (0,4) {\bftt{MSpace} \\ Scalar division: \texttt{(.\%)}};
+  \node[plain] (msemispace) at (0,0) {\bftt{MSemiSpace} \\ Scalar multiplication: \texttt{(.*)}};
+  \node[plain] (mspace)     at (0,8) {\bftt{MSpace} \\ Scalar division: \texttt{(.\%)}};
   \draw[thick, ->] (msemispace) -- (mspace);
 
+  % quartamodule
+  \node[plain] (quartamodule) at (8,2) {\bftt{Quartamodule}};
+  \draw[thick, ->] (msemispace) -- (quartamodule);
+  \draw[thick, ->] (asemigroup) -- (quartamodule);
+
+  % hemimodule
+  \node[plain] (hemimodule) at (12,6) {\bftt{Hemimodule}};
+  \draw[thick, ->] (quartamodule) -- (hemimodule);
+  \draw[thick, ->] (amonoid)      -- (hemimodule);
+
+  % demimodule
+  \node[plain] (demimodule) at (4,6) {\bftt{Demimodule}};
+  \draw[thick, ->] (quartamodule) -- (demimodule);
+
   % semimodule
-  \node[plain] (semimodule) at (4,4) {\bftt{Semimodule}};
-  \draw[thick, ->] (msemispace) -- (semimodule);
-  \draw[thick, ->] (amonoid)    -- (semimodule);
+  \node[plain] (semimodule) at (8,8) {\bftt{Semimodule}};
+  \draw[thick, ->] (hemimodule) -- (semimodule);
+  \draw[thick, ->] (demimodule) -- (semimodule);
+
+  % pseudomodule
+  \node[plain] (pseudomodule) at (14,10) {\bftt{PseudoModule}};
+  \draw[thick, ->] (hemimodule) -- (pseudomodule);
+  \draw[thick, ->] (agroup)     -- (pseudomodule);
+
+  % Pseudosemivectorspace
+  \node[plain] (pseudosemivectorspace) at (2,10) {\bftt{PseudoSemivectorSpace}};
+  \draw[thick, ->] (demimodule) -- (pseudosemivectorspace);
+  \draw[thick, ->] (mspace)     -- (pseudosemivectorspace);
 
   % module and semivectorspace
-  \node[plain] (module)          at (6,6) {\bftt{Module}};
-  \node[plain] (semivectorspace) at (2,6) {\bftt{SemivectorSpace}};
-  \draw[thick, ->] (agroup)     -- (module);
+  \node[plain] (module)          at (12,12) {\bftt{Module}};
+  \node[plain] (semivectorspace) at (4,12) {\bftt{SemivectorSpace}};
+  \draw[thick, ->] (pseudomodule)      -- (module);
   \draw[thick, ->] (semimodule) -- (module);
-  \draw[thick, ->] (semimodule) -- (semivectorspace);
-  \draw[thick, ->] (mspace)     -- (semivectorspace);
+  \draw[thick, ->] (pseudosemivectorspace) -- (semivectorspace);
+  \draw[thick, ->] (semimodule)     -- (semivectorspace);
 
   %vectorspace
-  \node[plain] (vectorspace) at (4,8) {\bftt{VectorSpace}};
+  \node[plain] (vectorspace) at (8,16) {\bftt{VectorSpace}};
   \draw[thick, ->] (module)          -- (vectorspace);
   \draw[thick, ->] (semivectorspace) -- (vectorspace);
 \end{tikzpicture}

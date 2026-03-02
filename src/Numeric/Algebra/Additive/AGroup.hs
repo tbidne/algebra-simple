@@ -21,7 +21,39 @@ import Numeric.Algebra.Deriving
     AsNum (MkAsNum),
   )
 
+-- $setup
+-- >>> import Numeric.Algebra.Additive.ASemigroup ((.+.))
+
 -- | Defines an additive group.
+--
+-- ==== __Examples:__
+--
+-- >>> :{
+--   -- Addition
+--   f1 :: (AGroup g) => g -> g
+--   f1 x = x .+. x
+-- :}
+--
+-- >>> f1 5
+-- 10
+--
+-- >>> :{
+--   -- Zero
+--   f2 :: (AGroup g) => g -> g
+--   f2 x = x .+. zero
+-- :}
+--
+-- >>> f2 5
+-- 5
+--
+-- >>> :{
+--   -- Subtraction
+--   f3 :: (AGroup g, Num g) => g -> g
+--   f3 x = x .-. 3
+-- :}
+--
+-- >>> f3 5
+-- 2
 --
 -- @since 0.1
 type AGroup :: Type -> Constraint

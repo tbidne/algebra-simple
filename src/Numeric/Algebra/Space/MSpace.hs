@@ -11,10 +11,7 @@ import Data.Kind (Constraint, Type)
 import Numeric.Algebra.Multiplicative.MGroup (MGroup ((.%.)))
 import Numeric.Algebra.Space.MSemiSpace (MSemiSpace)
 
--- | Defines a "multiplicative space" over an 'MGroup'. This generalizes
--- the notion of a 'Numeric.Algebra.Space.SemivectorSpace.Semivectorspace'
--- \(V\) over a 'Numeric.Algebra.Semifield.Semifield' \(K\) in that we
--- assume no additive structure on the space itself.
+-- | Defines a "multiplicative space" over an 'MGroup'.
 --
 -- @since 0.1
 type MSpace :: Type -> Type -> Constraint

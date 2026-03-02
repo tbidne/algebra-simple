@@ -48,6 +48,20 @@ jobs:
       - name: Compile
         run: cabal build lib:algebra-simple
 
+      - name: Doctests
+        if: ${{ matrix.ghc != '8.10.7'
+             && matrix.ghc != '9.0.2'
+             && matrix.ghc != '9.2.8'
+             && matrix.ghc != '9.4.8'
+             && matrix.ghc != '9.6.7'
+            }}
+        run: |
+          echo "*** Installing doctest ***"
+          cabal install --ignore-project doctest --flag cabal-doctest
+
+          echo "*** Running doctest ***"
+          cabal doctest
+
       - name: Property Tests
         run: cabal test props --test-options '--hedgehog-tests 10000'
   nix:

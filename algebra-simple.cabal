@@ -84,7 +84,6 @@ library
     Numeric.Algebra.Additive.AMonoid
     Numeric.Algebra.Additive.ASemigroup
     Numeric.Algebra.Deriving
-    Numeric.Algebra.Field
     Numeric.Algebra.MetricSpace
     Numeric.Algebra.Multiplicative
     Numeric.Algebra.Multiplicative.MEuclidean
@@ -92,13 +91,25 @@ library
     Numeric.Algebra.Multiplicative.MMonoid
     Numeric.Algebra.Multiplicative.MSemigroup
     Numeric.Algebra.Normed
-    Numeric.Algebra.Ring
-    Numeric.Algebra.Semifield
-    Numeric.Algebra.Semiring
+    Numeric.Algebra.Rings
+    Numeric.Algebra.Rings.Demiring
+    Numeric.Algebra.Rings.Field
+    Numeric.Algebra.Rings.Hemiring
+    Numeric.Algebra.Rings.PseudoRing
+    Numeric.Algebra.Rings.PseudoSemifield
+    Numeric.Algebra.Rings.Quartaring
+    Numeric.Algebra.Rings.Ring
+    Numeric.Algebra.Rings.Semifield
+    Numeric.Algebra.Rings.Semiring
     Numeric.Algebra.Space
+    Numeric.Algebra.Space.Demimodule
+    Numeric.Algebra.Space.Hemimodule
     Numeric.Algebra.Space.Module
     Numeric.Algebra.Space.MSemiSpace
     Numeric.Algebra.Space.MSpace
+    Numeric.Algebra.Space.PseudoModule
+    Numeric.Algebra.Space.PseudoSemivectorSpace
+    Numeric.Algebra.Space.Quartamodule
     Numeric.Algebra.Space.Semimodule
     Numeric.Algebra.Space.SemivectorSpace
     Numeric.Algebra.Space.VectorSpace

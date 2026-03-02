@@ -35,6 +35,8 @@ The primary interface to numerical operations in Haskell is `Num`. Unfortunately
 
 A longer description can be found in the table below, along with the `Num` functionality they are intended to replace:
 
+### Scalar classes
+
 <table>
   <thead>
     <th>Typeclass</th>
@@ -81,30 +83,60 @@ A longer description can be found in the table below, along with the `Num` funct
   <tr>
     <td><code>MEuclidean</code></td>
     <td>Euclidean division.</td>
-    <td><code>mmod</code></td>
-    <td><code>mod</code></td>
+    <td><code>mdivMode</code></td>
+    <td><code>divMod</code></td>
   </tr>
   <tr>
     <td><code>Normed</code></td>
     <td>Types that support a "norm".</td>
+    <td><code>norm</code>, <code>sgn</code></td>
+    <td><code>abs</code>, <code>signum</code></td>
+  </tr>
+  <tr>
+    <td><code>Quartaring</code></td>
+    <td><code>ASemigroup</code> and <code>MSemigroup</code>.</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><code>Hemiring</code></td>
+    <td><code>AMonoid</code> and <code>Quartaring</code>.</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><code>Demiring</code></td>
+    <td><code>MMonoid</code> and <code>Quartaring</code>.</td>
     <td></td>
     <td></td>
   </tr>
   <tr>
     <td><code>Semiring</code></td>
-    <td><code>AMonoid</code> and <code>MMonoid</code>.</td>
+    <td><code>Hemiring</code> and <code>Demiring</code>.</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><code>Pseudoring</code></td>
+    <td><code>AGroup</code> and <code>Hemiring</code>.</td>
     <td></td>
     <td></td>
   </tr>
   <tr>
     <td><code>Ring</code></td>
-    <td><code>AGroup</code> and <code>MMonoid</code>.</td>
+    <td><code>Semiring</code> and <code>Pseudoring</code>.</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><code>PseudoSemifield</code></td>
+    <td><code>MGroup</code> and <code>Demiring</code>.</td>
     <td></td>
     <td></td>
   </tr>
   <tr>
     <td><code>Semifield</code></td>
-    <td><code>AMonoid</code> and <code>MGroup</code>.</td>
+    <td><code>Semiring</code> and <code>PseudoSemifield</code>.</td>
     <td></td>
     <td></td>
   </tr>
@@ -114,6 +146,17 @@ A longer description can be found in the table below, along with the `Num` funct
     <td></td>
     <td></td>
   </tr>
+</table>
+
+### Space-like classes
+
+<table>
+  <thead>
+    <th>Typeclass</th>
+    <th>Description</th>
+    <th>New</th>
+    <th>Num</th>
+  </thead>
   <tr>
     <td><code>MSemiSpace</code></td>
     <td>Scalar multiplication.</td>
@@ -127,21 +170,49 @@ A longer description can be found in the table below, along with the `Num` funct
     <td></td>
   </tr>
   <tr>
+    <td><code>Quartamodule</code></td>
+    <td><code>ASemigroup</code> and <code>MSemiSpace</code>.</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><code>Hemimodule</code></td>
+    <td><code>AMonoid</code> and <code>Quartamodule</code>.</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><code>Demimodule</code></td>
+    <td><code>Quartamodule</code>.</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
     <td><code>Semimodule</code></td>
-    <td><code>AMonoid</code> and <code>MSemiSpace</code>.</td>
+    <td><code>Hemimodule</code> and <code>Demimodule</code>.</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><code>Pseudomodule</code></td>
+    <td><code>AGroup</code> and <code>Hemimodule</code>.</td>
     <td></td>
     <td></td>
   </tr>
   <tr>
     <td><code>Module</code></td>
-    <td><code>Semimodule</code> and <code>AGroup</code>.</td>
+    <td><code>Semimodule</code> and <code>Pseudomodule</code>.</td>
     <td></td>
     <td></td>
   </tr>
   <tr>
+    <td><code>PseudoSemivectorSpace</code></td>
+    <td><code>MSpace</code> and <code>Demimodule</code>.</td>
+    <td></td>
+  </tr>
+  <tr>
     <td><code>SemivectorSpace</code></td>
-    <td><code>Semimodule</code>s that are "scalar division"</td>
-    <td><code>(.%)</code></td>
+    <td><code>Semimodule</code> and <code>Demimodule</code>.</td>
     <td></td>
   </tr>
   <tr>

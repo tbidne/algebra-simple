@@ -10,10 +10,7 @@ where
 import Data.Kind (Constraint, Type)
 import Numeric.Algebra.Multiplicative.MSemigroup (MSemigroup ((.*.)))
 
--- | Defines a "multiplicative semi space" over an 'MSemigroup'. This
--- generalizes the notion of a 'Numeric.Algebra.Space.Semimodule.Semimodule'
--- \(M\) over a 'Numeric.Algebra.Ring.Ring' \(R\) in that we assume no
--- additive structure on the space itself.
+-- | Defines a "multiplicative semi space" over an 'MSemigroup'.
 --
 -- @since 0.1
 type MSemiSpace :: Type -> Type -> Constraint

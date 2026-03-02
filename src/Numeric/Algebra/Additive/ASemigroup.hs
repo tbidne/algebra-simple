@@ -22,6 +22,17 @@ import Numeric.Algebra.Deriving
 
 -- | Defines an additive semigroup.
 --
+-- ==== __Examples:__
+--
+-- >>> :{
+--   -- Addition
+--   f1 :: (ASemigroup g) => g -> g
+--   f1 x = x .+. x
+-- :}
+--
+-- >>> f1 5
+-- 10
+--
 -- @since 0.1
 type ASemigroup :: Type -> Constraint
 class ASemigroup s where
