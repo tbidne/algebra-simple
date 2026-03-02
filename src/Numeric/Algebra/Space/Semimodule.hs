@@ -7,20 +7,55 @@ module Numeric.Algebra.Space.Semimodule
 where
 
 import Data.Kind (Constraint, Type)
-import Numeric.Algebra.Additive.AMonoid (AMonoid)
-import Numeric.Algebra.Semiring (Semiring)
-import Numeric.Algebra.Space.MSemiSpace (MSemiSpace)
+import Numeric.Algebra.Rings.Semiring (Semiring)
+import Numeric.Algebra.Space.Demimodule (Demimodule)
+import Numeric.Algebra.Space.Hemimodule (Hemimodule)
 
--- | Defines a semimodule over a semiring. This generalizes the notion of
--- a 'Numeric.Algebra.Module.Module' \(M\) over a 'Numeric.Algebra.Ring.Ring'
--- \(R\) such that:
+-- $setup
+-- >>> import Numeric.Algebra.Additive.ASemigroup ((.+.))
+-- >>> import Numeric.Algebra.Additive.AMonoid (zero)
+-- >>> import Numeric.Algebra.Multiplicative.MSemigroup ((.*.))
+-- >>> import Numeric.Algebra.Multiplicative.MMonoid (one)
+-- >>> import Numeric.Algebra.Multiplicative.MGroup ((.%.))
+-- >>> import Numeric.Algebra.Space.MSemiSpace ((.*))
+
+-- | Defines a 'Semimodule' over a 'Semiring'.
 --
--- * \(M\) is an 'AMonoid', not an 'Numeric.Algebra.Additive.AGroup.AGroup'.
--- * \(R\) is a 'Semiring', not a 'Numeric.Algebra.Ring.Ring'.
+-- ==== __Examples:__
+--
+-- - \( \mathbb{Z}^{+} \times \mathbb{Z}^{+} \), the two-dimensional
+--   non-negative integers.
+--
+-- >>> :{
+--   -- Addition
+--   f1 :: (Semimodule m r) => m -> m
+--   f1 m = m .+. m
+-- :}
+--
+-- >>> f1 (8,4)
+-- (16,8)
+--
+-- >>> :{
+--   -- Zero
+--   f2 :: (Semimodule m r) => m -> m
+--   f2 m = m .+. zero
+-- :}
+--
+-- >>> f2 (8,4)
+-- (8,4)
+--
+-- >>> :{
+--   -- Scalar multiplication
+--   f3 :: (Semimodule m r, Num r) => m -> m
+--   f3 m = m .* 6
+-- :}
+--
+-- >>> f3 (8,4)
+-- (48,24)
 --
 -- @since 0.1
 type Semimodule :: Type -> Type -> Constraint
-class (AMonoid m, MSemiSpace m r, Semiring r) => Semimodule m r | m -> r
+class (Demimodule m r, Hemimodule m r, Semiring r) => Semimodule m r | m -> r
 
 -- | @since 0.1
 instance (Semiring r) => Semimodule (r, r) r

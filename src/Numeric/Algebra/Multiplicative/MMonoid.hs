@@ -26,12 +26,42 @@ import Numeric.Algebra.Deriving
   )
 import Numeric.Algebra.Multiplicative.MSemigroup (MSemigroup)
 
+-- $setup
+-- >>> import Numeric.Algebra.Multiplicative.MSemigroup ((.*.))
+
 -- | Defines a monoid over a multiplicative semigroup.
+--
+-- ==== __Examples:__
+--
+-- >>> :{
+--   -- Multiplication
+--   f1 :: (MMonoid g) => g -> g
+--   f1 x = x .*. x
+-- :}
+--
+-- >>> f1 5
+-- 25
+--
+-- >>> :{
+--   -- One
+--   f2 :: (MMonoid g) => g -> g
+--   f2 x = x .*. one
+-- :}
+--
+-- >>> f2 5
+-- 5
 --
 -- @since 0.1
 type MMonoid :: Type -> Constraint
 class (MSemigroup m) => MMonoid m where
-  -- | @since 0.1
+  -- | Should satisfy:
+  --
+  -- @
+  -- -- identity
+  -- a .*. one === a === one .*. a
+  -- @
+  --
+  -- @since 0.1
   one :: m
 
 -- | Pattern synonym for 'one'.

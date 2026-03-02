@@ -22,10 +22,28 @@ import Numeric.Algebra.Deriving
 
 -- | Defines a multiplicative semigroup.
 --
+-- ==== __Examples:__
+--
+-- >>> :{
+--   -- Multiplication
+--   f1 :: (MSemigroup g) => g -> g
+--   f1 x = x .*. x
+-- :}
+--
+-- >>> f1 5
+-- 25
+--
 -- @since 0.1
 type MSemigroup :: Type -> Constraint
 class MSemigroup s where
-  -- | @since 0.1
+  -- | Should satisfy:
+  --
+  -- @
+  -- -- associativity
+  -- a .*. (b .*. c) === (a .*. b) .*. c
+  -- @
+  --
+  -- @since 0.1
   (.*.) :: s -> s -> s
 
 infixl 7 .*.

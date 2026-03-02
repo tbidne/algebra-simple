@@ -10,3 +10,10 @@ mkdir -p docs/
 find docs/ -type f | xargs -I % sh -c "rm -r %"
 
 cp -r dist-newstyle/build/x86_64-linux/ghc-*/algebra-simple-0.1/doc/html/algebra-simple/* docs/
+
+# update png size in html
+needle="src=\".\/diagrams\/hierarchy.png\""
+
+needle_sz="$needle width=\"1080\" height=\"458\""
+
+sed -i -e "s/$needle/$needle_sz/g" docs/Numeric-Algebra.html

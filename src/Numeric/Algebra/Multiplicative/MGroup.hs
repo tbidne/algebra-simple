@@ -21,12 +21,51 @@ import Numeric.Algebra.Deriving
   )
 import Numeric.Algebra.Multiplicative.MMonoid (MMonoid (one))
 
+-- $setup
+-- >>> import Numeric.Algebra.Multiplicative.MSemigroup ((.*.))
+
 -- | Defines a multiplicative group.
+--
+-- ==== __Examples:__
+--
+-- >>> :{
+--   -- Multiplication
+--   f1 :: (MGroup g) => g -> g
+--   f1 x = x .*. x
+-- :}
+--
+-- >>> f1 5
+-- 25
+--
+-- >>> :{
+--   -- One
+--   f2 :: (MGroup g) => g -> g
+--   f2 x = x .*. one
+-- :}
+--
+-- >>> f2 5
+-- 5
+--
+-- >>> :{
+--   -- Division
+--   f3 :: (MGroup g, Num g) => g -> g
+--   f3 x = x .%. 2
+-- :}
+--
+-- >>> f3 6
+-- 3
 --
 -- @since 0.1
 type MGroup :: Type -> Constraint
 class (MMonoid g) => MGroup g where
-  -- | @since 0.1
+  -- | Should satisfy:
+  --
+  -- @
+  -- -- inverse
+  -- a .%. a === one
+  -- @
+  --
+  -- @since 0.1
   (.%.) :: g -> g -> g
 
 infixl 7 .%.

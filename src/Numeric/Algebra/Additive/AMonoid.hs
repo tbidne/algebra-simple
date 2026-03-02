@@ -26,7 +26,30 @@ import Numeric.Algebra.Deriving
     AsNum (MkAsNum),
   )
 
+-- $setup
+-- >>> import Numeric.Algebra.Additive.ASemigroup ((.+.))
+
 -- | Defines a monoid over an additive semigroup.
+--
+-- ==== __Examples:__
+--
+-- >>> :{
+--   -- Addition
+--   f1 :: (AMonoid g) => g -> g
+--   f1 x = x .+. x
+-- :}
+--
+-- >>> f1 5
+-- 10
+--
+-- >>> :{
+--   -- Zero
+--   f2 :: (AMonoid g) => g -> g
+--   f2 x = x .+. zero
+-- :}
+--
+-- >>> f2 5
+-- 5
 --
 -- @since 0.1
 type AMonoid :: Type -> Constraint
@@ -35,7 +58,9 @@ class (ASemigroup m) => AMonoid m where
   --
   -- @
   -- -- identity
-  -- x .+. zero = x = zero .+. x
+  -- a .+. zero === a === zero .+. a
+  -- @
+  --
   -- @since 0.1
   zero :: m
 
