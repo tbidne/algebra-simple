@@ -15,11 +15,13 @@
 * [Algebraic Typeclasses](#algebraic-typeclasses)
   * [Motivation](#motivation)
   * [Solution](#solution)
+  * [Principles](#principles)
+  * [A note on names](#a-note-on-names)
 * [Miscellaneous](#miscellaneous)
 
 # Overview
 
-`Algebra-Simple` intends to provide a simple, reasonably principled interface to typical operations (i.e. addition, subtraction, multiplication, division). This package is organized into three sections: `Numeric.Algebra`, `Numeric.Data`, and `Numeric.Literal`.
+`Algebra-Simple` intends to provide a simple, reasonably principled interface to typical operations (i.e. addition, subtraction, multiplication, division). This package is organized into two sections: `Numeric.Algebra` and `Numeric.Convert`.
 
 # Algebraic Typeclasses
 
@@ -117,14 +119,14 @@ A longer description can be found in the table below, along with the `Num` funct
     <td></td>
   </tr>
   <tr>
-    <td><code>Pseudoring</code></td>
+    <td><code>PseudoRing</code></td>
     <td><code>AGroup</code> and <code>Hemiring</code>.</td>
     <td></td>
     <td></td>
   </tr>
   <tr>
     <td><code>Ring</code></td>
-    <td><code>Semiring</code> and <code>Pseudoring</code>.</td>
+    <td><code>Semiring</code> and <code>PseudoRing</code>.</td>
     <td></td>
     <td></td>
   </tr>
@@ -155,54 +157,45 @@ A longer description can be found in the table below, along with the `Num` funct
     <th>Typeclass</th>
     <th>Description</th>
     <th>New</th>
-    <th>Num</th>
   </thead>
   <tr>
     <td><code>MSemiSpace</code></td>
     <td>Scalar multiplication.</td>
     <td><code>(.*)</code>, <code>(*.)</code></td>
-    <td></td>
   </tr>
   <tr>
     <td><code>MSpace</code></td>
     <td>Scalar division.</td>
     <td><code>(.%)</code>, <code>(%.)</code></td>
-    <td></td>
   </tr>
   <tr>
     <td><code>Quartamodule</code></td>
     <td><code>ASemigroup</code> and <code>MSemiSpace</code>.</td>
-    <td></td>
     <td></td>
   </tr>
   <tr>
     <td><code>Hemimodule</code></td>
     <td><code>AMonoid</code> and <code>Quartamodule</code>.</td>
     <td></td>
-    <td></td>
   </tr>
   <tr>
     <td><code>Demimodule</code></td>
     <td><code>Quartamodule</code>.</td>
-    <td></td>
     <td></td>
   </tr>
   <tr>
     <td><code>Semimodule</code></td>
     <td><code>Hemimodule</code> and <code>Demimodule</code>.</td>
     <td></td>
-    <td></td>
   </tr>
   <tr>
-    <td><code>Pseudomodule</code></td>
+    <td><code>PseudoModule</code></td>
     <td><code>AGroup</code> and <code>Hemimodule</code>.</td>
-    <td></td>
     <td></td>
   </tr>
   <tr>
     <td><code>Module</code></td>
-    <td><code>Semimodule</code> and <code>Pseudomodule</code>.</td>
-    <td></td>
+    <td><code>Semimodule</code> and <code>PseudoModule</code>.</td>
     <td></td>
   </tr>
   <tr>
@@ -219,9 +212,10 @@ A longer description can be found in the table below, along with the `Num` funct
     <td><code>VectorSpace</code></td>
     <td><code>Module</code> and <code>SemivectorSpace</code></td>
     <td></td>
-    <td></td>
   </tr>
 </table>
+
+## Principles
 
 We have the following guiding principles:
 
@@ -249,13 +243,83 @@ We have the following guiding principles:
 
 3. Safety
 
-    Instances that break the type's invariants (`instance Ring Natural`), are banned. Furthermore, instances that are _highly_ likely to go wrong (e.g. `Rational` with bounded integral types) are also forbidden.
+    Instances that break the type's invariants (`instance Ring Natural`), are banned. Furthermore, instances that are _highly_ likely to go wrong (e.g. `Ratio` with bounded integral types) are also forbidden.
 
 4. Ergonomics
 
      We choose new operators that do not clash with prelude.
 
 We provide instances for built-in numeric types where it makes sense.
+
+## A note on names
+
+In general, we try to use canonical mathematical names where possible. In some cases, however, either a canonical name does not exist, or an existing one does not fit well with the rest. We can categorize them thusly:
+
+### Scalar classes
+
+#### Canonical, widely used
+
+- `Semigroup`
+- `Monoid`
+- `Group`
+- `Ring`
+- `Field`
+
+These names are all canonical and widely used. We do separate our additive and multiplicative `Semigroup/Monoid/Group` hierarchies into `A(dditive)` and `M(ultiplicative)` variants for convenience, but otherwise everything is standard.
+
+#### Canonical, niche
+
+- `Hemiring`
+- `Semiring`
+- `Semifield`
+
+`Semiring` is relatively well-referenced in computer science. `Semifield` and (especially) `Hemiring` are quite obscure, but references do exist.
+
+#### Established, ambiguous
+
+- `PseudoRing`
+
+What we here call a `PseudoRing` is more commonly called an `rng` by number theorists, enough to arguably give it canonical status. Unfortunately, `PseudoRing` is ambigous in that it has at least 3 distinct definitions. That said, we choose `PseudoRing` as it fits better with our hiearchy and naming scheme.
+
+#### Bespoke
+
+- `Quartaring`
+- `Demiring`
+- `PseudoSemifield`
+
+Unfortunately, there do not appear to be established names for all the combinations we want.
+
+We take `PseudoSemifield` to be the multiplicative reflection (`Semifield` without additive identity) of `PseudoRing` (`Ring` without multiplicative identity), hence favoring the `Pseudo` prefix for both.
+
+`Demiring` is inspired by `Hemiring`, as both can be thought of as "partial `Semirings`" (each losing a different identity). Consequently, a `Quartaring` -- losing both identities -- is an even *less* complete version of a `Semiring`.
+
+### Space-like classes
+
+We can categorize the space-like classes similarly, and thankfully it is mostly straightforward once we have the scalar names.
+
+#### Canonical, widely used
+
+- `Module`
+- `VectorSpace`
+
+#### Canonical, niche
+
+- `Semimodule`
+- `SemivectorSpace`
+
+#### Bespoke
+
+- `MSemiSpace`
+- `MSpace`
+- `Quartamodule`
+- `Hemimodule`
+- `Demimodule`
+- `PseudoModule`
+- `PseudoSemivectorSpace`
+
+These are all straightforward translations of their respective scalar classes, trading `Ring` for `Module` and `Field` for `VectorSpace`. `MSemiSpace` and `MSpace` are the low-level building blocks for the actual algebraic classes we want.
+
+Final note: `Quarta`, `Hemi`, `Demi`, and `Semi` are not considered word breaks, unlike `Pseudo` and `Space`.
 
 # Miscellaneous
 
