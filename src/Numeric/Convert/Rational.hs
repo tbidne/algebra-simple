@@ -12,6 +12,8 @@ module Numeric.Convert.Rational
     fromℚ,
     Toℚ,
     toℚ,
+    AsRational,
+    Asℚ,
   )
 where
 
@@ -44,3 +46,13 @@ type Toℚ = Internal.ToRational
 -- @since 0.1
 toℚ :: (HasCallStack, Toℚ a) => a -> ℚ
 toℚ = Internal.toQ
+
+-- | Alias for 'Internal.FromRational' and 'Internal.ToRational'.
+--
+-- @since 0.1
+type AsRational a = (Internal.FromRational a, Internal.ToRational a)
+
+-- | Alias for 'Fromℚ' and 'Toℚ'.
+--
+-- @since 0.1
+type Asℚ a = (Fromℚ a, Toℚ a)

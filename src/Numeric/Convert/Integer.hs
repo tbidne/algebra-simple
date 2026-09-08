@@ -12,6 +12,8 @@ module Numeric.Convert.Integer
     fromℤ,
     Toℤ,
     toℤ,
+    AsInteger,
+    Asℤ,
   )
 where
 
@@ -44,3 +46,13 @@ type Toℤ = Internal.ToInteger
 -- @since 0.1
 toℤ :: (HasCallStack, Toℤ a) => a -> ℤ
 toℤ = Internal.toZ
+
+-- | Alias for 'Internal.FromInteger' and 'Internal.ToInteger'.
+--
+-- @since 0.1
+type AsInteger a = (Internal.FromInteger a, Internal.ToInteger a)
+
+-- | Alias for 'Fromℤ' and 'Toℤ'.
+--
+-- @since 0.1
+type Asℤ a = (Fromℤ a, Toℤ a)

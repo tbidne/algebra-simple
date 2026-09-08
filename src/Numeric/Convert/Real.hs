@@ -11,6 +11,8 @@ module Numeric.Convert.Real
     fromℝ,
     Toℝ,
     toℝ,
+    AsReal,
+    Asℝ,
   )
 where
 
@@ -43,3 +45,13 @@ type Toℝ = Internal.ToReal
 -- @since 0.1
 toℝ :: (HasCallStack, Toℝ a) => a -> ℝ
 toℝ = Internal.toR
+
+-- | Alias for 'Internal.FromReal' and 'Internal.ToReal'.
+--
+-- @since 0.1
+type AsReal a = (Internal.FromReal a, Internal.ToReal a)
+
+-- | Alias for 'Fromℝ' and 'Toℝ'.
+--
+-- @since 0.1
+type Asℝ a = (Fromℝ a, Toℝ a)
